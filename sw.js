@@ -1,5 +1,5 @@
 // Lafz service worker: offline-first app shell.
-const V = 'lafz-v1';
+const V = 'lafz-v2';
 const FILES = [
   './',
   './index.html',

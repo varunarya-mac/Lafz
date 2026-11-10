@@ -20,6 +20,16 @@ async function show(tab){
   const wrap = document.createElement('div');
   wrap.className = 'view';
   screen.appendChild(wrap);
+
+  // WebKit quirk: while the .view entrance animation runs (and with forwards
+  // fill, even after it ends), .view counts as "transformed" and becomes the
+  // containing block for position:fixed children — which anchored the ＋ FAB
+  // to the bottom of the entire list instead of the viewport. Clear the
+  // animation as soon as it finishes so the FAB floats properly everywhere.
+  const releaseView = () => { wrap.style.animation = 'none'; };
+  wrap.addEventListener('animationend', releaseView, { once: true });
+  setTimeout(releaseView, 700);   // fallback in case the event never fires
+
   await VIEWS[tab].mount(wrap);
 }
 

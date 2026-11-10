@@ -57,7 +57,7 @@ h1,h2,h3,h4,p{margin:0}
 /* ---------- screen & views ---------- */
 .screen{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px 16px calc(var(--tab-h) + 24px);scrollbar-width:none}
 .screen::-webkit-scrollbar{display:none}
-.view{animation:viewIn .38s var(--ease) both}
+.view{animation:viewIn .38s var(--ease) backwards}
 @keyframes viewIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .v-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding:4px 2px 12px}
 .v-head h1{font-size:26px;letter-spacing:-.3px;font-weight:800}
