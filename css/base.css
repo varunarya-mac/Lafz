@@ -1,0 +1,146 @@
+/* ============ Lafz design system ============ */
+:root{
+  --bg:#f4f6f8; --bg-elev:#ffffff; --bg-soft:#eef1f4;
+  --text:#0b1220; --text-2:#5b6472; --text-3:#8a93a3;
+  --sep:rgba(11,18,32,.09); --stroke:rgba(11,18,32,.10);
+  --accent:#0f766e; --accent-2:#14b8a6; --accent-soft:rgba(20,184,166,.14); --accent-ink:#ffffff;
+  --ok:#16a34a; --warn:#d97706; --bad:#dc2626;
+  --easy:#16a34a; --medium:#d97706; --hard:#dc2626;
+  --shadow:0 8px 28px rgba(11,18,32,.09);
+  --shadow-sm:0 2px 10px rgba(11,18,32,.06);
+  --sheet-shadow:0 -12px 48px rgba(11,18,32,.22);
+  --r-lg:20px; --r-md:14px; --r-sm:10px;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  --serif:"New York",ui-serif,"Iowan Old Style",Georgia,serif;
+  --spring:cubic-bezier(.22,1.28,.36,1);
+  --ease:cubic-bezier(.33,.9,.35,1);
+  --tab-h:calc(58px + env(safe-area-inset-bottom));
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0a0e14; --bg-elev:#161c26; --bg-soft:#101620;
+    --text:#f2f5f8; --text-2:#98a2b3; --text-3:#6b7486;
+    --sep:rgba(255,255,255,.08); --stroke:rgba(255,255,255,.10);
+    --accent:#2dd4bf; --accent-2:#14b8a6; --accent-soft:rgba(45,212,191,.16); --accent-ink:#04211d;
+    --ok:#4ade80; --warn:#fbbf24; --bad:#f87171;
+    --easy:#4ade80; --medium:#fbbf24; --hard:#f87171;
+    --shadow:0 10px 30px rgba(0,0,0,.45);
+    --shadow-sm:0 2px 10px rgba(0,0,0,.35);
+    --sheet-shadow:0 -12px 48px rgba(0,0,0,.55);
+  }
+}
+html[data-theme="dark"]{
+  --bg:#0a0e14; --bg-elev:#161c26; --bg-soft:#101620;
+  --text:#f2f5f8; --text-2:#98a2b3; --text-3:#6b7486;
+  --sep:rgba(255,255,255,.08); --stroke:rgba(255,255,255,.10);
+  --accent:#2dd4bf; --accent-2:#14b8a6; --accent-soft:rgba(45,212,191,.16); --accent-ink:#04211d;
+  --ok:#4ade80; --warn:#fbbf24; --bad:#f87171;
+  --easy:#4ade80; --medium:#fbbf24; --hard:#f87171;
+  --shadow:0 10px 30px rgba(0,0,0,.45);
+  --shadow-sm:0 2px 10px rgba(0,0,0,.35);
+  --sheet-shadow:0 -12px 48px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;height:100%}
+body{
+  background:var(--bg);color:var(--text);font-family:var(--font);
+  font-size:16px;line-height:1.45;-webkit-font-smoothing:antialiased;
+  overscroll-behavior-y:none;
+}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;touch-action:manipulation}
+input,textarea,select{font:inherit;font-size:16px;color:var(--text)}
+::placeholder{color:var(--text-3)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+h1,h2,h3,h4,p{margin:0}
+#app{height:100dvh;display:flex;flex-direction:column;position:relative}
+
+/* ---------- screen & views ---------- */
+.screen{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px 16px calc(var(--tab-h) + 24px);scrollbar-width:none}
+.screen::-webkit-scrollbar{display:none}
+.view{animation:viewIn .38s var(--ease) both}
+@keyframes viewIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.v-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding:4px 2px 12px}
+.v-head h1{font-size:26px;letter-spacing:-.3px;font-weight:800}
+.v-head .sub{font-size:13px;color:var(--text-2)}
+
+/* ---------- install banner ---------- */
+.a2hs{display:flex;gap:10px;align-items:center;background:var(--accent-soft);
+  border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);
+  color:var(--text);font-size:13px;padding:10px 12px;border-radius:var(--r-md);margin:0 16px 8px;animation:viewIn .4s var(--ease)}
+.a2hs span{flex:1}
+.a2hs-x{color:var(--text-2);font-size:14px;padding:6px}
+
+/* ---------- tab bar ---------- */
+.tabbar{position:absolute;left:0;right:0;bottom:0;height:var(--tab-h);display:flex;
+  background:color-mix(in srgb,var(--bg-elev) 88%,transparent);
+  -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+  border-top:1px solid var(--sep);padding:6px 8px env(safe-area-inset-bottom);z-index:40}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:600;
+  color:var(--text-2);border-radius:12px;padding:4px 0;transition:color .25s,transform .25s var(--spring)}
+.tab svg{width:26px;height:26px;fill:currentColor;transition:transform .35s var(--spring)}
+.tab .stk{stroke:currentColor;fill:none;stroke-width:1.6}
+.tab .stk2{stroke:currentColor;fill:none;stroke-width:1.7}
+.tab.on{color:var(--accent)}
+.tab.on svg{transform:translateY(-2px) scale(1.08)}
+.tab:active{transform:scale(.94)}
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 20px;border-radius:var(--r-md);
+  font-weight:700;font-size:16px;background:var(--bg-soft);color:var(--text);border:1px solid var(--stroke);
+  transition:transform .2s var(--spring),background .2s,box-shadow .2s;user-select:none}
+.btn:active{transform:scale(.96)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:transparent;box-shadow:var(--shadow-sm)}
+.btn.danger{background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad);border-color:color-mix(in srgb,var(--bad) 30%,transparent)}
+.btn.block{width:100%}
+.btn.sm{min-height:40px;padding:8px 14px;font-size:14px}
+.iconbtn{width:44px;height:44px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;
+  color:var(--text-2);transition:transform .2s var(--spring),background .2s,color .2s}
+.iconbtn:active{transform:scale(.88)}
+.iconbtn.on{color:var(--accent)}
+.iconbtn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- inputs ---------- */
+.search{position:relative;margin-bottom:10px}
+.search input{width:100%;height:46px;border-radius:var(--r-md);border:1px solid var(--stroke);
+  background:var(--bg-elev);padding:0 14px 0 40px;box-shadow:var(--shadow-sm);transition:border-color .2s}
+.search input:focus{border-color:var(--accent);outline:none}
+.search .mag{position:absolute;left:12px;top:50%;transform:translateY(-50%) rotate(-45deg);color:var(--text-3);pointer-events:none}
+.field{display:block;margin:14px 0}
+.field .lbl{display:block;font-size:13px;font-weight:700;color:var(--text-2);margin-bottom:6px}
+.field input,.field textarea{width:100%;border-radius:var(--r-md);border:1px solid var(--stroke);background:var(--bg-elev);
+  padding:12px 14px;box-shadow:var(--shadow-sm);transition:border-color .2s}
+.field textarea{min-height:104px;resize:vertical;line-height:1.5}
+.field input:focus,.field textarea:focus{border-color:var(--accent);outline:none}
+.switch{position:relative;width:52px;height:32px;flex-shrink:0;border-radius:999px;background:var(--bg-soft);
+  border:1px solid var(--stroke);transition:background .25s,border-color .25s}
+.switch::after{content:'';position:absolute;top:2px;left:2px;width:26px;height:26px;border-radius:50%;
+  background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.3);transition:transform .28s var(--spring)}
+.switch.on{background:var(--accent);border-color:transparent}
+.switch.on::after{transform:translateX(20px)}
+.switch-row{display:flex;align-items:center;gap:12px;padding:6px 2px}
+.switch-row .grow{flex:1}
+.switch-row .grow b{font-size:15px;display:block}
+.switch-row .grow span{font-size:12.5px;color:var(--text-2)}
+
+/* ---------- segmented control ---------- */
+.seg{display:flex;position:relative;background:var(--bg-soft);border:1px solid var(--stroke);border-radius:12px;padding:3px;margin:6px 0}
+.seg .thumb{position:absolute;top:3px;bottom:3px;left:3px;width:calc((100% - 6px)/var(--n,4));border-radius:9px;
+  background:var(--bg-elev);box-shadow:var(--shadow-sm);transform:translateX(calc(100% * var(--i,0)));
+  transition:transform .32s var(--spring);pointer-events:none}
+.seg button{flex:1;position:relative;z-index:1;min-height:38px;font-size:13.5px;font-weight:600;color:var(--text-2);
+  border-radius:9px;transition:color .25s;white-space:nowrap;padding:0 4px}
+.seg button.on{color:var(--accent);font-weight:700}
+
+/* ---------- pills & chips ---------- */
+.chips{display:flex;gap:8px;overflow-x:auto;padding:8px 2px 10px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex-shrink:0;display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:8px 14px;border-radius:999px;
+  font-size:13.5px;font-weight:600;color:var(--text-2);background:var(--bg-soft);border:1px solid var(--stroke);
+  transition:all .25s var(--ease)}
+.chip:active{transform:scale(.94)}
+.chip.on{background:var(--accent);border-color:transparent;color:var(--accent-ink);box-shadow:var(--shadow-sm)}
+.pill{display:inline-flex;align-items:center;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;letter-spacing:.2px}
+.pill.e{color:var(--easy);background:color-mix(in srgb,var(--easy) 15%,transparent)}
+.pill.m{color:var(--medium);background:color-mix(in srgb,var(--medium) 16%,transparent)}
+.pill.h{color:var(--hard);background:color-mix(in srgb,var(--hard) 15%,transparent)}
+.pill.mute{color:var(--text-3);background:var(--bg-soft)}
+

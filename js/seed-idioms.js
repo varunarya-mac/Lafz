@@ -1,0 +1,36 @@
+// Sample idioms: d = difficulty, np = excluded from practice, b = pre-set Leitner box.
+export const SEED_IDIOMS = [
+  // easy
+  { t:'Break the ice', m:'To start a conversation in an awkward or tense situation.', x:'He told a joke to break the ice at the meeting.', d:'easy' },
+  { t:'Piece of cake', m:'Something very easy to do.', x:'The test was a piece of cake.', d:'easy' },
+  { t:'Under the weather', m:'Feeling slightly ill.', x:'I am feeling under the weather today, so I stayed home.', d:'easy' },
+  { t:'Hit the sack', m:'To go to bed.', x:'I am exhausted — time to hit the sack.', d:'easy' },
+  { t:'Call it a day', m:'To stop working for the rest of the day.', x:'We fixed the last bug; let us call it a day.', d:'easy' },
+  { t:'Once in a blue moon', m:'Very rarely.', x:'He visits us once in a blue moon.', d:'easy', b:3 },
+  { t:'Cost an arm and a leg', m:'To be extremely expensive.', x:'That new car cost him an arm and a leg.', d:'easy', np:true },
+  { t:'On cloud nine', m:'Extremely happy.', x:'She was on cloud nine after hearing the results.', d:'easy' },
+  { t:'Spill the beans', m:'To reveal a secret.', x:'Do not spill the beans about the surprise party.', d:'easy' },
+  { t:'Pull someone\u2019s leg', m:'To joke or tease someone playfully.', x:'Are you pulling my leg? That cannot be true!', d:'easy' },
+  // medium
+  { t:'Hit the nail on the head', m:'To describe exactly what is causing a situation.', x:'You hit the nail on the head with that analysis.', d:'medium' },
+  { t:'Burn the midnight oil', m:'To work late into the night.', x:'We burned the midnight oil before the product launch.', d:'medium' },
+  { t:'Bite the bullet', m:'To force yourself to do something difficult or unpleasant.', x:'I bit the bullet and apologized first.', d:'medium' },
+  { t:'Let the cat out of the bag', m:'To reveal a secret unintentionally.', x:'He let the cat out of the bag about the merger.', d:'medium' },
+  { t:'A blessing in disguise', m:'Something that seemed bad but turned out good.', x:'Missing that train was a blessing in disguise.', d:'medium' },
+  { t:'Beat around the bush', m:'To avoid saying what you really mean.', x:'Stop beating around the bush and tell me.', d:'medium', b:3 },
+  { t:'Cut corners', m:'To do something badly to save time or money.', x:'They cut corners on safety, and it showed.', d:'medium' },
+  { t:'Go the extra mile', m:'To make more effort than is expected.', x:'She always goes the extra mile for her clients.', d:'medium' },
+  { t:'The ball is in your court', m:'It is your turn to act or decide.', x:'I replied yesterday, so the ball is in your court.', d:'medium' },
+  { t:'In hot water', m:'In trouble.', x:'He is in hot water over the missing report.', d:'medium' },
+  { t:'On the fence', m:'Undecided between two choices.', x:'I am still on the fence about the job offer.', d:'medium' },
+  { t:'Turn a blind eye', m:'To deliberately ignore something.', x:'They turned a blind eye to the errors in the report.', d:'medium' },
+  // hard
+  { t:'Throw in the towel', m:'To admit defeat and give up.', x:'After five failed attempts, he threw in the towel.', d:'hard' },
+  { t:'Steal someone\u2019s thunder', m:'To take credit for someone else\u2019s moment or idea.', x:'She stole my thunder by announcing it first.', d:'hard' },
+  { t:'Bite off more than you can chew', m:'To take on more than you can handle.', x:'He bit off more than he could chew with three projects.', d:'hard' },
+  { t:'A perfect storm', m:'The worst possible combination of circumstances.', x:'Delays plus rising costs made a perfect storm.', d:'hard' },
+  { t:'Play devil\u2019s advocate', m:'To argue the opposite side to test an idea.', x:'Let me play devil\u2019s advocate for a moment.', d:'hard' },
+  { t:'Barking up the wrong tree', m:'To pursue a mistaken idea or blame the wrong person.', x:'If you think I leaked it, you are barking up the wrong tree.', d:'hard' },
+  { t:'Read between the lines', m:'To find a hidden meaning beyond the obvious.', x:'Read between the lines of that email — she is not happy.', d:'hard' },
+  { t:'Burn bridges', m:'To destroy relationships or future possibilities.', x:'Avoid burning bridges when you leave a job.', d:'hard', np:true },
+];

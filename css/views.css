@@ -1,0 +1,150 @@
+/* ============ screens: lists, practice, sheets, toast ============ */
+/* ---------- list rows ---------- */
+.rows{display:flex;flex-direction:column;gap:10px}
+.row{display:flex;align-items:center;gap:12px;background:var(--bg-elev);border:1px solid var(--stroke);
+  border-radius:var(--r-md);padding:13px 14px;box-shadow:var(--shadow-sm);text-align:left;
+  transition:transform .22s var(--spring),box-shadow .22s,border-color .22s;
+  animation:rowIn .4s var(--ease) both;animation-delay:calc(var(--i,0)*35ms)}
+@keyframes rowIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+.row:active{transform:scale(.985);border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+.row.dim{opacity:.62}
+.row-main{flex:1;min-width:0}
+.row-title{font-size:16.5px;font-weight:700;letter-spacing:-.1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row-sub{font-size:13.5px;color:var(--text-2);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row-tags{display:flex;gap:6px;margin-top:7px;flex-wrap:wrap}
+.row-side{display:flex;align-items:center;gap:2px}
+.count-line{font-size:12.5px;color:var(--text-3);padding:2px 4px 10px}
+
+/* ---------- FAB ---------- */
+.fab{position:fixed;right:18px;bottom:calc(var(--tab-h) + 16px);width:58px;height:58px;border-radius:19px;z-index:30;
+  background:var(--accent);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 10px 26px color-mix(in srgb,var(--accent) 45%,transparent);
+  transition:transform .25s var(--spring)}
+.fab svg{width:26px;height:26px;stroke:currentColor;stroke-width:2.4;stroke-linecap:round}
+.fab:active{transform:scale(.9) rotate(-6deg)}
+
+/* ---------- empty state ---------- */
+.empty{text-align:center;padding:46px 18px;color:var(--text-2);animation:viewIn .45s var(--ease)}
+.empty .art{font-size:52px;display:inline-block;animation:floaty 3.6s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.empty h3{margin:10px 0 4px;font-size:18px;color:var(--text)}
+.empty p{font-size:14px;max-width:280px;margin:0 auto}
+
+/* ---------- practice hero ---------- */
+.p-hero{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--bg-elev);
+  border:1px solid var(--stroke);border-radius:var(--r-lg);padding:16px 18px;box-shadow:var(--shadow-sm);margin-bottom:12px}
+.streak{display:flex;align-items:center;gap:10px}
+.streak .flame{font-size:30px;display:inline-block}
+.streak .flame.pop{animation:flamePop .7s var(--spring)}
+@keyframes flamePop{0%{transform:scale(1)}35%{transform:scale(1.45) rotate(-8deg)}70%{transform:scale(.92)}100%{transform:scale(1)}}
+.streak b{font-size:24px;display:block;line-height:1.1}
+.streak .lbl{font-size:11.5px;color:var(--text-2);font-weight:700;letter-spacing:.4px;text-transform:uppercase}
+.ring-wrap{position:relative;width:74px;height:74px;flex-shrink:0}
+.ring-wrap svg{width:74px;height:74px;transform:rotate(-90deg)}
+.ring-bg{fill:none;stroke:var(--bg-soft);stroke-width:7}
+.ring-fg{fill:none;stroke:var(--accent);stroke-width:7;stroke-linecap:round;transition:stroke-dashoffset .5s var(--ease)}
+.ring-txt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800}
+.p-meta{display:flex;gap:10px;margin:2px 0 10px}
+.stat{flex:1;background:var(--bg-elev);border:1px solid var(--stroke);border-radius:var(--r-md);padding:10px 12px;box-shadow:var(--shadow-sm)}
+.stat .n{font-size:20px;font-weight:800}
+.stat .l{font-size:11px;color:var(--text-2);font-weight:700;letter-spacing:.4px;text-transform:uppercase}
+/* ---------- flashcards ---------- */
+.stage{display:flex;flex-direction:column;align-items:center;padding-top:14px}
+.p-count{font-size:12.5px;font-weight:700;color:var(--text-2);letter-spacing:.6px;margin-bottom:14px}
+.flipzone{width:100%;max-width:420px;height:300px;perspective:1400px}
+.fcard{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .55s var(--spring)}
+.fcard.flipped{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:24px;
+  border:1px solid var(--stroke);background:var(--bg-elev);box-shadow:var(--shadow);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:26px;text-align:center;overflow:auto}
+.face.back{transform:rotateY(180deg)}
+.face .word{font-size:27px;font-weight:800;letter-spacing:-.3px;line-height:1.25;padding:0 10px}
+.face .tap-hint{position:absolute;bottom:14px;font-size:11.5px;color:var(--text-3);font-weight:600}
+.face .meaning{font-size:17px;line-height:1.5;font-weight:600}
+.face .example{margin-top:12px;font-size:14px;color:var(--text-2);font-style:italic}
+.face .tags{margin-top:14px;display:flex;gap:6px}
+.grade{display:flex;gap:12px;width:100%;max-width:420px;margin-top:18px}
+.grade .btn{flex:1;min-height:52px;font-size:15px}
+.grade .btn.wrong{background:color-mix(in srgb,var(--bad) 13%,transparent);color:var(--bad);border-color:color-mix(in srgb,var(--bad) 28%,transparent)}
+.grade .btn.right{background:color-mix(in srgb,var(--ok) 13%,transparent);color:var(--ok);border-color:color-mix(in srgb,var(--ok) 28%,transparent)}
+.grade-enter{animation:gradeIn .3s var(--ease) both}
+@keyframes gradeIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.card-out-right{animation:cardOutR .42s var(--ease) both}
+@keyframes cardOutR{to{opacity:0;transform:translateX(75%) rotate(10deg) scale(.85)}}
+.card-out-left{animation:cardOutL .42s var(--ease) both}
+@keyframes cardOutL{to{opacity:0;transform:translateX(-75%) rotate(-10deg) scale(.85)}}
+.card-in{animation:cardIn .45s var(--spring) both}
+@keyframes cardIn{from{opacity:0;transform:translateX(45%) rotate(4deg)}to{opacity:1;transform:none}}
+.card-shake{animation:shakeX .5s ease}
+@keyframes shakeX{0%,100%{transform:translateX(0)}20%{transform:translateX(-14px)}40%{transform:translateX(12px)}60%{transform:translateX(-8px)}80%{transform:translateX(6px)}}
+
+/* ---------- session done ---------- */
+.done{display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:34px;animation:viewIn .45s var(--ease)}
+.done .emoji{font-size:60px;animation:flamePop .9s var(--spring)}
+.done h2{font-size:24px;margin:12px 0 4px}
+.done .stats{display:flex;gap:26px;margin:16px 0 6px}
+.done .stats div b{display:block;font-size:26px}
+.done .stats div span{font-size:12px;color:var(--text-2);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.done .btn{margin-top:16px;min-width:220px}
+/* ---------- shayari ---------- */
+.shay{position:relative;background:var(--bg-elev);border:1px solid var(--stroke);border-radius:var(--r-md);padding:14px 16px;
+  box-shadow:var(--shadow-sm);transition:transform .22s var(--spring);
+  animation:rowIn .4s var(--ease) both;animation-delay:calc(var(--i,0)*35ms)}
+.shay:active{transform:scale(.985)}
+.shay .heart{position:absolute;top:6px;right:6px;font-size:19px;line-height:1;color:var(--text-3);padding:10px;
+  background:none;transition:transform .25s var(--spring),color .2s}
+.shay .heart.on{color:#e11d48}
+.shay .heart:active{transform:scale(1.35)}
+.shay .txt{font-family:var(--serif);font-size:17.5px;line-height:1.62;white-space:pre-line;padding-right:30px}
+.shay .poet{font-family:var(--serif);font-style:italic;font-size:13.5px;color:var(--text-2);margin-top:8px;text-align:right}
+
+/* ---------- settings ---------- */
+.set-group{margin:22px 2px 6px;font-size:12px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;color:var(--text-3)}
+.set-card{background:var(--bg-elev);border:1px solid var(--stroke);border-radius:var(--r-md);box-shadow:var(--shadow-sm);overflow:hidden}
+.set-row{display:flex;align-items:center;gap:14px;padding:13px 16px;border-bottom:1px solid var(--sep);min-height:58px}
+.set-row:last-child{border-bottom:0}
+.set-row .grow{flex:1;font-size:15px}
+.set-row .grow b{display:block;font-weight:700}
+.set-row .grow span{font-size:12.5px;color:var(--text-2)}
+.backup-pill{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;flex-shrink:0}
+.backup-pill.ok{color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,transparent)}
+.backup-pill.warn{color:var(--warn);background:color-mix(in srgb,var(--warn) 16%,transparent)}
+.about{padding:18px 4px;font-size:13px;color:var(--text-2);line-height:1.65}
+.about b{color:var(--text)}
+
+/* ---------- sheet (bottom modal) ---------- */
+.overlay{position:fixed;inset:0;z-index:60;display:flex;align-items:flex-end;justify-content:center}
+.overlay[hidden]{display:none}
+.backdrop{position:absolute;inset:0;background:rgba(4,8,16,.48);opacity:0;transition:opacity .3s var(--ease);
+  -webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+.overlay.open .backdrop{opacity:1}
+.sheet{position:relative;width:100%;max-width:560px;max-height:88dvh;overflow-y:auto;overscroll-behavior:contain;
+  background:var(--bg-elev);border-radius:22px 22px 0 0;box-shadow:var(--sheet-shadow);
+  padding:8px 18px calc(env(safe-area-inset-bottom) + 22px);
+  transform:translateY(100%);transition:transform .42s var(--spring)}
+.overlay.open .sheet{transform:translateY(0)}
+.sheet.dragging{transition:none}
+.sh-handle{padding:8px 0 10px;touch-action:none;cursor:grab}
+.sh-handle span{display:block;width:44px;height:5px;border-radius:99px;background:var(--stroke);margin:0 auto}
+.sheet h2{font-size:20px;font-weight:800;padding:2px 0 4px}
+.sheet .sh-actions{display:flex;gap:10px;margin-top:18px}
+.sheet .sh-actions .btn{flex:1}
+
+/* ---------- toast ---------- */
+.toast{position:fixed;left:50%;bottom:calc(var(--tab-h) + 18px);transform:translate(-50%,16px);z-index:80;
+  display:flex;align-items:center;gap:14px;max-width:88vw;background:color-mix(in srgb,var(--bg-elev) 92%,transparent);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  border:1px solid var(--stroke);border-radius:16px;box-shadow:var(--shadow);padding:12px 16px;
+  opacity:0;pointer-events:none;transition:opacity .3s var(--ease),transform .35s var(--spring);font-size:14px;font-weight:600}
+.toast.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.toast .t-act{color:var(--accent);font-weight:800;font-size:14px;flex-shrink:0}
+
+/* ---------- confetti ---------- */
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:70;overflow:hidden}
+.confetti i{position:absolute;top:-16px;width:8px;height:13px;border-radius:2px;animation:confFall linear forwards}
+@keyframes confFall{to{transform:translateY(112vh) rotate(720deg);opacity:.85}}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+}
